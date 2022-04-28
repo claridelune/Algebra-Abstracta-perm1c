@@ -8,10 +8,10 @@ void descifrar_afin(string texto, int key_a, int key_b);
 void imprimir_mensaje(string texto);
 
 int main(){
-	//Idioma por que Ñ no quiere 
+	//Idioma por que Ã‘ no quiere 
 	setlocale(LC_CTYPE, "Spanish");
 	//Abecedarios
-	string abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+	string abecedario = "ABCDEFGHIJKLMNÃ‘OPQRSTUVWXYZ";
 	string abecedario_cifrado;
 	
 	string ejemplo= "ELEMENTALMIQUERIDOWATSON";
@@ -24,7 +24,18 @@ int main(){
 }
 
 void cifrar_afin(string texto, int key_a, int key_b){
-
+	string abecedario = "ABCDEFGHIJKLMNÃ‘OPQRSTUVWXYZ";
+	string texto_c;
+	for(int i=0; i<texto.length()+1; i++){
+		
+		int u = abecedario.find(texto[i]);
+		int newindex = mod((key_a * u + key_b), 27);
+		texto_c[i]=abecedario[newindex];
+		cout<<abecedario[newindex];
+	}
+	/*Imprimir texto cifrado*/
+	for(int i=0; i<texto_c.length(); i++) cout<<texto[i];
+	cout<<endl;
 }
 
 void descifrar_afin(string texto, int key_a, int key_b){
